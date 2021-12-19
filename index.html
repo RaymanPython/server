@@ -1,57 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
- <meta charset="UTF-8">
- <title>Title</title>
-</head>
-<form action="cgi-bin/action.py" method="POST">
-	<div id="registration">
-	<p id="start">Введите свои данные</p>
-	<p>
-   <input type="text" placeholder="Имя" name ="name">
-   </p>
-	<p>
-   <input type="text" placeholder="Фамилия" name ="surname">
-   </p>
-	<p>
-   <input type="text" placeholder="Отчество" name ="patronymic">
-   </p>
-    <label>Страна</label>
-    <select name="country">
-      <option>Белоруссия</option>
-      <option>Украина</option>
-      <option>Германия</option>
-      <option>Казахстан</option>
-      <option>Армения</option>
-      <option>Россия</option>
-    </select>
-   </div>
-   <div id="test">
-   <p>
-   <label>1. В период эмоционального и энергетического подъема. Вы можете неожиданно испытывать энергетический подъем, совершая при этом много хаотичных действий.</label>
-   <p><label><input type="radio" name="1" value="Yes">Да</label><label><input type="radio" name="1" value="No">Нет</label></p>
-   </p>
-   <p>
-   <label>2. В период эмоционального и энергетического подъема. Для Вас характерно неожиданно испытывать невероятное возбуждение, чрезмерно приподнятое, эйфорическое настроение.</label>
-   <p><label><input type="radio" name="2" value="Yes">Да</label><label><input type="radio" name="2" value="No">Нет</label></p>
-   </p>
-   <p>
-   <label>3. В период эмоционального и энергетического подъема. Вам свойственна повышенная раздражительность.</label>
-   <p><label><input type="radio" name="3" value="Yes">Да</label><label><input type="radio" name="3" value="No">Нет</label></p>
-   </p>
-   <p>
-   <label>4. В период эмоционального и энергетического подъема. Вы часто испытываете беспорядочность мыслей.</label>
-   <p><label><input type="radio" name="4" value="Yes">Да</label><label><input type="radio" name="4" value="No">Нет</label></p>
-   </p>
-   <p>
-   <label>5. В период эмоционального и энергетического подъема. Для Вас характерно говорить быстро, при этом перескакивать от одной идеи к другой.</label>
-   <p><label><input type="radio" name="5" value="Yes">Да</label><label><input type="radio" name="5" value="No">Нет</label></p>
-   </p>
-   </div>
-	<p>
-	<input type="submit" value="Закончить">
-	</p>
-    <button>
-      Зарегистрироваться
-    </button>
+<meta charset="UTF-8">
+<form action="cgi-bin/action.py" method="POST" >
+    <p>Введите ваш никнейм:  <input type="text" name ="name"></p>
+    <p>Введите какую олимпиаду Вы писали? <input type="text" name ="name_olimp"></p>
+    <p>Ваш балл?  <input type="text" name ="count"></p>
+	<p>И последний вопрос?
+	<select name="olimp">
+		<option>Выиграл</option>
+		<option>Проиграл</option>
+		<option>Призёр</option>
+		<option>Похвальная граммота</option>
+	</select>
+	<p> <input type="submit"> </p>
+
 </form>
+</head>
+<body>
+</body>
+</html>

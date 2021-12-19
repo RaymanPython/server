@@ -1,46 +1,85 @@
-# Строку выше удалять не следует. 
+#!/usr/bin/env python
+# Строку выше удалять не следует.
 # Это специальный комментарий, который запустит python
 
 import cgi, cgitb
-import random
 
-
-form = cgi.FieldStorage()
 # включаем вывод ошибок
 cgitb.enable()
-res = 0
-n = 5
-ans = []
-for i in range(n):
-    ans.append(random.randint(0, 1))
-answers = ["Yes", "NO"]
-for i in ans:
-    print(answers[i])
-for i in range(1, n + 1):
-    if form.getvalue(str(i)) == answers[ans[i - 1]]:
-        res += 1
 
-# добавляем заголовок, чтобы браузер понял 
+# добавляем заголовок, чтобы браузер понял
 # как показывать то, что мы ему прислали.
 # Мы будем передавать текст HTML
 print("Content-type: text/html")
-# Выводим пустую строку - разделитель
-# между заголовком и содержимым HTML
 print("")
-lol = f"""{form.getvalue("name", "")} {form.getvalue("surname", "")} {form.getvalue("patronymic", "")}, проживающий в стране {form.getvalue("country")} имеет коефициент везения {res * 100 // (n - 1)}% \n"""
 
 # получаем доступ к форме
-f = open('input.txt', 'w')
-f.write(lol)
-f.close()
-
-print(f"""<html>
+form = cgi.FieldStorage()
+print("""<html>
 <head>
+    <style>
+    .color {
+      background: lightblue;
+      width: 300px;
+      text-alight: center;
+      }
+    </style>
     <meta charset="UTF-8">
 </head>
 <body>
-    ФИО: {form.getvalue("name", "")} {form.getvalue("surname", "")} {form.getvalue("patronymic", "")}, 
-    Страна: {form.getvalue("country")}
-    <p>У вас биполярка на {res * 100 // (n - 1)}</p>
-</body>
-</html>""")
+<p>
+    Здравствуйте, """ + str(form.getvalue("name")) + "! Ваше письмо получит " + str(
+    form.getvalue("olimp")) + ". В этом году вы попросили " + str(form.getvalue("olimp_name")) + " (" + str(
+    form.getvalue("count")) + """). С Наступающим Новым Годом!!!
+    """)
+
+
+name = form.getvalue("name")
+olimp = form.getvalue("olimp")
+olimp_name = form.getvalue("olimp_name")
+olimp_name = form.getvalue("olimp_name")
+count = form.getvalue("count")
+
+# открываем файл для чтения в кодировке UTF-8
+f = open('all.txt', "a", encoding="UTF-8")
+f.write(name)
+f.write("\n")
+f.write(olimp)
+f.write("\n")
+f.write(olimp_name)
+f.write("\n")
+f.write(count)
+f.write("\n")
+f.write("\n")
+f.close()
+lines = 0
+num = 1
+
+f = open('all.txt', "r", encoding="UTF-8")
+line = []
+q = 0
+a = []
+for i in f:
+    if q == 4:
+        q = 0
+        line.append(a)
+        a = []
+    else:
+        a.append(i)
+        q += 1
+    lines += 1
+
+for i in line:
+    print("""
+    <div class="color">
+
+       <p> №""" + str(num) + """
+       <p> ник: """ + str(i[0]) + """
+       <p> Олимпиада: """ + str(i[2]) + """
+       <p> Результат: """ + str(i[1]) + " (" + str(i[3]) + """) </p>
+    </div>""")
+
+    num += 1
+print("""</body>
+    </html>""")
+
